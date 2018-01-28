@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(mongolite)\nlibrary(ggplot2)\nrunning_backs = mongo(collection = \"2016RunningBacks\", db = \"NFLPlayers\")\ndf <- running_backs$find(fields='{\"_id\":0,\"Att\":1,\"Att/G\":1,\n                         \"Yds\":1,\"Yds/G\":1,\"TD\":1,\"1st\":1,\"FUM\":1}')\ndf[1:7] <- apply(df[,1:7],c(1,2),function(x){gsub(\",\",\"\",x)})\ndf[1:7] <- apply(df[,1:7],c(1,2),as.numeric)\nlmod <- lm(`Yds/G`~`FUM`,data=df)\nplot(lmod)\nggplot(df,aes(x=`Yds/G`,y=`FUM`))+\n  geom_point(aes(color = `1st`,size=TD))+\n  geom_smooth()+\n  labs(x = \"Yards per Game\",y =\"Fumble\",title = \"Yards per Game and Fumbles\")\n\n",
+    "created" : 1517167569923.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3042478319",
+    "id" : "3B98A416",
+    "lastKnownWriteTime" : 1517168815,
+    "last_content_update" : 1517168815190,
+    "path" : "~/R/FiveReasons/NFLDataViz.R",
+    "project_path" : "NFLDataViz.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
