@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(httr)\nlibrary(xml2)\nlibrary(mongolite)\nresp <- GET('http://www.nfl.com/stats/categorystats?tabSeq=1&statisticPositionCategory=RUNNING_BACK&season=2016&seasonType=REG')\nnfltext <- content(resp,as=\"text\")\nrad <- read_html(nfltext)\ntrs <- xml_find_all(rad, \".//tr\")\ncolNames <- xml_text(xml_children(trs[1]),trim = T)\nmat <- matrix(nrow = length(trs) - 1,ncol = length(colNames))\nfor(i in 2:length(trs)){\n  child <- xml_children(trs[i])\n  mat[i-1,]<- xml_text(child,trim=T)\n}\ndf <- data.frame(mat)\ncolnames(df) <- colNames\nrunning_backs = mongo(collection = \"2016RunningBacks\", db = \"NFLPlayers\")\nrunning_backs$insert(df)\nrunning_backs$count()\nrunning_backs$iterate()$one()\n",
+    "created" : 1517161214255.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2130150631",
+    "id" : "540FFA8A",
+    "lastKnownWriteTime" : 1517164692,
+    "last_content_update" : 1517164692898,
+    "path" : "~/R/FiveReasons/WebScrapeDB.R",
+    "project_path" : "WebScrapeDB.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
