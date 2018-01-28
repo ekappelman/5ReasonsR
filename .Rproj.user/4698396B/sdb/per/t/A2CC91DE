@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ggplot2)\n\nydata <- sample(c(1:100),10000,replace=T)\nxdata <- sample(c(\"Erik\",\"Cooper\",\"Stewart\"),10000,replace = T)\nzdata <- sample(c(\"Red\",\"Blue\",\"Green\",\"Yellow\",\"Orange\"),10000,replace = T,\n                prob=c(0.4,0.2,0.25,0.1,0.05))\ndf <- data.frame(Marbles=ydata,Person=xdata,Color=zdata)\n\nggplot(df,aes(x=Person,fill=Color))+\n  geom_bar(position=\"dodge\")\n",
+    "created" : 1517168900901.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1387743065",
+    "id" : "A2CC91DE",
+    "lastKnownWriteTime" : 1517169474,
+    "last_content_update" : 1517169474308,
+    "path" : "~/R/FiveReasons/Simplicity.R",
+    "project_path" : "Simplicity.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
