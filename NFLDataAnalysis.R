@@ -1,0 +1,10 @@
+library(mongolite)
+running_backs = mongo(collection = "2016RunningBacks", db = "NFLPlayers")
+df <- running_backs$find(fields='{"_id":0,"Att":1,"Att/G":1,
+                         "Yds":1,"Yds/G":1,"TD":1,"1st":1,"FUM":1}')
+df[1:7] <- apply(df[,1:7],1,function(x){gsub(",","",x)})
+df[1:7] <- apply(df[,1:7],1,as.numeric)
+nfl.pc <- prcomp(df,center = TRUE,scale. = TRUE)
+print(nfl.pc)
+summary(nfl.pc)
+plot(nfl.pc, type = "l")

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(mongolite)\nrunning_backs = mongo(collection = \"2016RunningBacks\", db = \"NFLPlayers\")\ndf <- running_backs$find(fields='{\"_id\":0,\"Att\":1,\"Att/G\":1,\n                         \"Yds\":1,\"Yds/G\":1,\"TD\":1,\"1st\":1,\"FUM\":1}')\ndf[1:7] <- apply(df[,1:7],1,function(x){gsub(\",\",\"\",x)})\ndf[1:7] <- apply(df[,1:7],1,as.numeric)\nnfl.pc <- prcomp(df,center = TRUE,scale. = TRUE)\nprint(nfl.pc)\nsummary(nfl.pc)\nplot(nfl.pc, type = \"l\")\n",
+    "created" : 1517165639321.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2068074502",
+    "id" : "B005480E",
+    "lastKnownWriteTime" : 1517167467,
+    "last_content_update" : 1517167467243,
+    "path" : "~/R/FiveReasons/NFLDataAnalysis.R",
+    "project_path" : "NFLDataAnalysis.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
