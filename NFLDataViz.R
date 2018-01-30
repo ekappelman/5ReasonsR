@@ -6,9 +6,11 @@ df <- running_backs$find(fields='{"_id":0,"Att":1,"Att/G":1,
 df[1:7] <- apply(df[,1:7],c(1,2),function(x){gsub(",","",x)})
 df[1:7] <- apply(df[,1:7],c(1,2),as.numeric)
 lmod <- lm(`Yds/G`~`FUM`,data=df)
+par(mfrow=c(2,2))
 plot(lmod)
-ggplot(df,aes(x=`Yds/G`,y=`FUM`))+
-  geom_point(aes(color = `1st`,size=TD))+
+par(mfrow=c(1,1)
+ggplot(df,aes(x=`Yds/G`,y=`TD`))+
+  geom_point(aes(size = `1st`))+
   geom_smooth()+
-  labs(x = "Yards per Game",y ="Fumble",title = "Yards per Game and Fumbles")
+  labs(x = "Yards per Game",y ="Touchdowns",title = "Yards per Game and Touchdowns")
 

@@ -7,4 +7,6 @@ zdata <- sample(c("Red","Blue","Green","Yellow","Orange"),10000,replace = T,
 df <- data.frame(Marbles=ydata,Person=xdata,Color=zdata)
 
 ggplot(df,aes(x=Person,fill=Color))+
-  geom_bar(position="dodge")
+  geom_bar(position="dodge")+
+  scale_fill_manual(values=c("light blue","light green","#ff8000","#ff3232","#ffff66"))+
+  labs(fill="Ball Color")
